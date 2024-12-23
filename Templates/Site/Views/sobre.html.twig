@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block conteudo %}
+
+
+    <section>
+        <h2>
+            {% if subtitulo %}
+            {{ subtitulo }}
+            {% else %}
+            {{ constant("SITE_NOME") }}
+            {% endif %}
+        </h2>
+        <p>Esta é uma página HTML básica, com estrutura essencial para iniciar um projeto web.</p>
+    </section>
+
+
+{% endblock %} 

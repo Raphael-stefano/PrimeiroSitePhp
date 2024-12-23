@@ -1,0 +1,31 @@
+{% extends 'dashboard.html.twig' %}
+{% block conteudo %}
+
+    <form action="{{ url('Admin/usuarios/cadastrar') }}" method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="mail" class="form-control" id="email" name="email"/>
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha"/>
+        </div>
+        <select class="form-select mb-3" name='status'>
+            <option selected disabled>Status</option>
+            <option value="0">Inativo</option>
+            <option value="1">Ativo</option>
+        </select>
+        <select class="form-select mb-3" name='level'>
+            <option selected disabled>Level</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <button type="submit" class="btn btn-dark-blue">Cadastrar Usuário</button>
+    </form>
+
+{% endblock %}

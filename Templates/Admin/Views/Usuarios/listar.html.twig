@@ -1,0 +1,92 @@
+{% extends 'dashboard.html.twig' %}
+{% block conteudo %}
+
+        <header class="d-flex flex-direction-row justify-content-between px-3 mb-4">
+            <a href="{{ url('Admin/usuarios/cadastrar') }}" class="btn btn-dark-blue">Cadastrar</a>
+            <div>
+                <span class="btn btn-dark-blue">Total: {{ total }}</span>
+                <span class="btn btn-dark-green">Ativos: {{ total_ativos }}</span>
+                <span class="btn btn-dark-red">Inativos: {{ total - total_ativos }}</span>
+            </div>
+        </header>
+
+        {{ flash() }}
+
+        <table class="table table-hover">
+            <colgroup>
+                <col style="width: 10%;"> <!-- Coluna ID -->
+                <col style="width: 60%;"> <!-- Coluna Título -->
+                <col style="width: 10%;"> <!-- Coluna Level -->
+                <col style="width: 10%;"> <!-- Coluna Status -->
+                <col style="width: 5%;"> <!-- Coluna Edit -->
+                <col style="width: 5%;"> <!-- Coluna Delete -->
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col" class="text-center">Level</th>
+                    <th scope="col" class="text-center">Status</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <th scope="row">{{usuario.id_usuario}}</th>
+                    <td>{{usuario.nome}}</td>
+
+                    {% if usuario.level == 3 %}
+                        <td class="text-success text-center"><i class="bi bi-3-circle-fill"></i></td>
+                    {% elseif usuario.level == 2 %}
+                        <td class="text-warning text-center"><i class="bi bi-2-circle-fill"></i></td>
+                    {% elseif usuario.level == 1 %}
+                        <td class="text-danger text-center"><i class="bi bi-1-circle-fill"></i></td>
+                    {% endif %}
+
+                    {% if usuario.status == 1 %}
+                        <td class="text-success text-center"><i class="bi bi-check-circle-fill"></i></td>
+                    {% else %}
+                        <td class="text-warning text-center"><i class="bi bi-x-circle-fill"></i></td>
+                    {% endif %}
+                    <td class="text-center">
+                        <a class="link-offset-2 link-offset-2-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ url('Admin/usuarios/editar/'~usuario.id_usuario) }}"><i class="bi bi-pencil-fill"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a class="link-offset-2 link-offset-2-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-danger" href="#" onclick="openConfirmModal('{{ url('Admin/usuarios/deletar/'~usuario.id_usuario) }}')"><i class="bi bi-trash-fill"></i></a>
+                                                    <!-- Modal -->
+                            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmModalLabel">Confirmação</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Tem certeza de que deseja excluir este usuario?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <script>
+            function openConfirmModal(url) {
+                var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+                document.getElementById('confirmDelete').onclick = function() {
+                    window.location.href = url;
+                };
+                confirmModal.show();
+            }
+        </script>
+        
+{% endblock %}

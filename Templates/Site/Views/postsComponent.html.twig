@@ -1,0 +1,38 @@
+<div class="container my-3 w-75 d-flex flex-wrap">
+    <!--<div class="row">-->
+        {% for post in posts %}
+            <!--<div class="col-md-3">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ post.titulo }}</h4>
+                        <p class="card-text">{{ post.texto }}</p>
+                    </div>
+                </div>
+            </div>-->
+            <div class="container mb-3 w-50">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ url('post/'~post.id_post) }}" style="cursor: pointer; text-decoration: none;" class="text-light hover-underline"><h4 class="card-title">{{ post.titulo }}</h4></a>
+                        <div class='w-100 d-flex justify-content-between py-1'>
+                            <small class='text-secondary'>{{ categoria(post).titulo|upper }}</small>
+                            <small class='text-secondary'>{{ contarTempo(post.data_postagem) }}</small>
+                        </div>
+                        <p id="post-{{ loop.index }}" data-texto-completo="{{post.texto}}" 
+                        data-texto-resumido="{{textoResumido(post.texto, 150)}}" onclick="exibirTexto('{{loop.index}}')" class="card-text">{{ textoResumido(post.texto, 150) }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    <!--</div>-->
+</div>
+
+<script>
+    function exibirTexto(id){
+        const elemento = document.getElementById('post-' + id)
+        if(elemento.innerHTML == elemento.getAttribute("data-texto-resumido")){
+            elemento.innerHTML = elemento.getAttribute("data-texto-completo")
+        } else{
+            elemento.innerHTML = elemento.getAttribute("data-texto-resumido")
+        }
+    }
+</script>

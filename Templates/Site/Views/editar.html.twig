@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block conteudo %}
+
+    <div class='table-responsive container p-3'>
+        <form action="{{ url('editar/'~post.id_post) }}" method="post">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" value="{{ post.titulo }}">
+            </div>
+            <div class="mb-3">
+                <label for="texto" class="form-label">Texto</label>
+                <textarea type="text" class="form-control" id="texto" name="texto" rows="3">{{ post.texto }}</textarea>
+            </div>
+            <select class="form-select mb-3" name='status'>
+                <option value="0" {% if post.status == 0 %}selected{% endif %}>Inativo</option>
+                <option value="1" {% if post.status == 1 %}selected{% endif %}>Ativo</option>
+            </select>
+            <select class="form-select mb-3" name='id_categoria'>
+                <option selected disabled>Categoria</option>
+                {% for categoria in categorias %}
+                    <option {% if post.id_categoria == categoria.id_categoria %} selected {% endif %} value="{{ categoria.id_categoria }}">{{ categoria.titulo }}</option>
+                {% endfor %}
+            </select>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Salvar Alteraçoes</button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza de que deseja realizar essas alteraçoes no post?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-warning">Confirmar Alteraçoes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

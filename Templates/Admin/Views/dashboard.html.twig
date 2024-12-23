@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+{% block corpo %}
+
+
+    <div class="d-flex flex-row flex-nowrap">
+
+        <div class="w-25">
+            
+            {% include "menu.html.twig" %}
+
+        </div>
+
+        <div class="w-75">
+                <div class="container shadow">
+                    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                    <a href="{{ url('/') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto ms-4 link-body-emphasis text-decoration-none text-secondary">
+                        <span class="fs-4">Site</span>
+                    </a>
+                    <!-- <ul class="nav nav-pills">
+                        <li class="nav-item"><a href="{{ url('Admin/login') }}" class="nav-link fs-5">Raphael Stefano</a> </li>
+                        <li class="nav-item"><a href="{{ url('Admin/sair') }}" class="nav-link fs-5">Sair</a></li>
+                    </ul> -->
+                    <div class="dropdown">
+                        <a class="btn text-primary fs-4 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ usuario().nome }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url('Admin/perfil') }}">Perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Editar</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url('Admin/sair') }}">Sair</a></li>
+                        </ul>
+                    </div>
+                    </header>
+                </div>
+                <div class='p-3'>
+                    {{ flash() }}
+                    {% for item in caminho %}
+                        <a class='link-underline-opacity-0link-offset-2 link-underline link-underline-opacity-0 text-secondary' href="{{ url('Admin/'~item[1]) }}">{{item[0]}}</a>
+                    {% endfor %}
+                    {% if mensagem %}
+                        <span> - Bem-vindo, {{ usuario().nome }}, seu último login foi no dia {{ dataFormatoDMA(usuario().ultimo_login)}}, às {{ horaFormatoMH(usuario().ultimo_login)}}
+                    {% endif %}
+                </div>
+                <div class='table-responsive container p-3'>
+                    {% block conteudo %}
+                        {% for card in cards %}
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 style="margin: 0;" class="fs-3">{{ card.nome_tabela }}</h5 style="margin: 0;">
+                                <span><i class="{{ card.icone }}"></i></span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text fs-1">{{ card.total }}</p>
+                                <p><span class="btn btn-dark-blue">{{ card.ativos }} ativos</span><span class="btn btn-dark-red mx-3">{{ card.inativos }} inativos</span></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endblock %}
+                </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openConfirmModal(url) {
+            var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+            document.getElementById('confirmDelete').onclick = function() {
+                window.location.href = url;
+            };
+            confirmModal.show();
+        }
+    </script>
+
+{% endblock %}

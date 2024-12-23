@@ -1,0 +1,102 @@
+/*body{
+    font-family: "Orbitron", sans-serif;
+}*/
+
+.bg-dark-blue{
+    background-color: #062D3E;
+}
+
+.bg-text-dark-blue{
+    background-color: #062D3E;
+    color: #f8f9fa;
+}
+
+.btn-dark-blue{
+    background-color: #062D3E;
+    color: #f8f9fa;
+}
+
+.btn-dark-blue:hover{
+    background-color: #0f516d;
+    color: #f8f9fa;
+}
+
+.link-dark-blue{
+    color: #062D3E;
+}
+
+.link-dark-blue:hover{
+    color: #0f516d;
+}
+
+.text-dark-blue{
+    color: #062D3E;
+}
+
+.hover-text-dark-blue:hover{
+    color: #062D3E;
+}
+
+.bg-dark-red{
+    background-color: #800808;
+}
+
+.btn-dark-red{
+    background-color: #800808;
+    color: #f8f9fa;
+}
+
+.btn-dark-red:hover{
+    background-color: #9c1818;
+    color: #f8f9fa;
+}
+
+.link-dark-red{
+    color: #800808;
+}
+
+.link-dark-red:hover{
+    color: #9c1818
+}
+
+.text-dark-red{
+    color: #800808;
+}
+
+.hover-text-dark-red:hover{
+    color: #800808;
+}
+
+.bg-dark-green{
+    background-color: #344D0E;
+}
+
+.btn-dark-green{
+    background-color: #344D0E;
+    color: #f8f9fa;
+}
+
+.btn-dark-green:hover{
+    background-color: #4D7019;
+    color: #f8f9fa;
+}
+
+.link-dark-green{
+    color: #344D0E;
+}
+
+.link-dark-green:hover{
+    color: #4D7019
+}
+
+.text-dark-green{
+    color: #344D0E;
+}
+
+.hover-text-dark-green:hover{
+    color: #344D0E;
+}
+
+.list-group-item-action-dark-blue:hover{
+    background-color: #0f516d;
+}

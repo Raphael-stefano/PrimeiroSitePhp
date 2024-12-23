@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+{% block corpo %}
+
+    <div style="height: 100vh; width: 100vw;" class="d-flex flex-row align-items-center justify-content-around text-center">
+        {{ flash() }}
+        <div style="border-color: #062D3E" class="bg-light h-75 w-25 d-flex flex-column align-items-center justify-content-center shadow">
+
+            <div class="text-start w-100 px-4 text-dark-blue">
+                <h5 class="text-start fs-5 fw-semibold">Nome</h5>
+                <p class="fs-6">{{ usuario.nome }}</p>
+            </div>
+
+            <div class="text-start w-100 px-4 text-dark-blue">
+                <h5 class="text-start fs-5 fw-semibold">E-mail</h5>
+                <p class="fs-6">{{ usuario.email }}</p>
+            </div>
+
+            <div class="text-start w-100 px-4 text-dark-blue">
+                <h5 class="text-start fs-5 fw-semibold">Level</h5>
+                <p class="fs-6">{{ usuario.level }}</p>
+            </div>
+
+            <div class="text-start w-100 px-4 text-dark-blue">
+                <h5 class="text-start fs-5 fw-semibold">Status</h5>
+                <p class="fs-6">{% if usuario.nome == 1 %} Ativo {% else %} Inativo {% endif %}</p>
+            </div>
+
+            <div class="text-start w-100 px-4 text-dark-blue">
+                <h5 class="text-start fs-5 fw-semibold">Cadastrado desde</h5>
+                <p class="fs-6">{{ contarTempo(usuario.data_cadastro) }}</p>
+            </div>
+
+            <div class="text-start w-100 px-4 text-dark-blue">
+                <h5 class="text-start fs-5 fw-semibold">Última alteraçao</h5>
+                <p class="fs-6">{{ contarTempo(usuario.data_atualizacao) }}</p>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

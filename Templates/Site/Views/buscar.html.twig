@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block conteudo %}
+
+    {% if posts %}
+        
+            {% include "layoutPrincipal.html.twig" %}
+            
+    {% else %}
+        <section class="container d-flex">
+            <div class="container my-3 w-75">
+                <div class="alert alert-warning mx-5" role="alert">
+                    Nenhum post foi encontrado! Tente novamente buscando por outro texto!
+                </div>
+            </div>
+
+            {% include "listaCategorias.html.twig" %}
+
+        </section>
+    {%endif%}
+        
+
+
+
+{% endblock %}

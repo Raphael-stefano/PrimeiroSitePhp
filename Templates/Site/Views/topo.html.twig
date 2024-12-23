@@ -1,0 +1,68 @@
+<header class="p-4 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">  
+        <a href="/" class="d-flex align-items-center text-light text-decoration-none mx-3"> 
+          <i class="bi bi-clock-history fs-1"></i>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{{ url('/') }}" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="{{ url("sobre") }}" class="nav-link px-2 text-light">Sobre</a></li>
+          <div class="dropdown">
+            <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorias
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              {% for categoria in categorias %}
+                  <li class="list-group-item list-group-item-action p-3">
+                      <a href="{{ url('categoria/'~categoria.id_categoria) }}" style="cursor: pointer; text-decoration: none;" class="text-light hover-underline">
+                          {{ categoria.titulo }}
+                      </a>
+                  </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </ul>
+
+        <form class="mb-3 me-2 mb-lg-0 d-flex" role="search" name="pesquisa" action="{{ url('buscar') }}" method="post">
+          <input type="search" name="busca" class="form-control form-control-dark text-bg-dark w-75 me-3" placeholder="Search..." aria-label="Search">
+          <button type="submit" class="btn btn-outline-light me-2 w-25">Buscar</button>
+        </form>
+
+        <div class="text-end">
+          {% if usuario() %}
+            {% if usuario().level >= 3 %} <a href="{{ url('Admin') }}" class="btn btn-outline-light me-2">Dashboard</a> {% endif %}
+            <a href="{{ url('perfil') }}" class="btn btn-outline-light me-2">{{ usuario().nome }}</a>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exitModal">
+              Sair
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Encerrar Sessao</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Tem certeza que deseja encerrar sua sesssao?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <a href="{{ url('sair') }}" class="btn btn-warning">Sair</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% else %}
+            <a href="{{ url('Admin/login/entrar') }}" class="btn btn-outline-light me-2">Entrar</a>
+            <a href="{{ url('Admin/login') }}" class="btn btn-warning">Cadastrar-se</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </header>

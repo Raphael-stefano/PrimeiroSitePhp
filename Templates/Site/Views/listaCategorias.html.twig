@@ -1,0 +1,12 @@
+<div class="w-25 my-3 container">
+    <p class="text-center fs-5"><strong>Categorias</strong></p>
+    <ul class="list-group list-group-flush">
+        {% for categoria in categorias %}
+            <li class="list-group-item list-group-item-action">
+                <a href="{{ url('categoria/'~categoria.id_categoria) }}" style="cursor: pointer; text-decoration: none;" class="text-light hover-underline">
+                    {{ categoria.titulo }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

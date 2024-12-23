@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+
+    <!-- <link href="headers.css" rel="stylesheet"> -->
+
+    <!-- Link para o CSS do Bootstrap (já incluído, mantendo apenas uma versão) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Link para o Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+
+    <!-- Links para CSS específicos do seu projeto -->
+    <link rel="stylesheet" href="{{ url('Templates/Assets/css/index.css') }}">
+    <link rel="stylesheet" href="{{ url('Templates/Admin/Assets/css/admin.css') }}">
+
+    <style>
+      h1, h2, h3, h4, h5, h6{
+        text-align: center;
+      }
+    </style>
+
+</head>
+<body class="bg-body-secondary" data-bs-theme="light">
+
+
+    <main>
+      {% block corpo %} {% endblock %}
+    </main>
+
+
+
+    <script src="{{ url("Templates/Assets/js/script.js") }}"></script>
+    <script src="{{ url("Templates/Admin/Assets/js/admin.js") }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+

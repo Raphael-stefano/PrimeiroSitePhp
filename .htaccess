@@ -1,0 +1,10 @@
+# Desabilitar listagem de diretórios
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /AulasPhp/
+
+# Redirecionar todas as requisições para index.php, exceto quando o arquivo ou diretório existe
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
