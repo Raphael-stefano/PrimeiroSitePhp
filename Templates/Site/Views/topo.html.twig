@@ -32,13 +32,23 @@
         <div class="text-end">
           {% if usuario() %}
             {% if usuario().level >= 3 %} <a href="{{ url('Admin') }}" class="btn btn-outline-light me-2">Dashboard</a> {% endif %}
-            <a href="{{ url('perfil') }}" class="btn btn-outline-light me-2">{{ usuario().nome }}</a>
-
+              <div class="dropdown d-inline">
+                  <a class="btn btn-outline-light dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ usuario().nome }}
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{{ url('perfil') }}">Perfil</a></li>
+                      <li><a class="dropdown-item" href="{{ url('editarUsuario/'~usuario().id_usuario)}}">Editar</a></li>
+                      <li><a class="dropdown-item" href="{{ url('postar/'~usuario().id_usuario)}}">Postar</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{ url('sair') }}">Sair</a></li>
+                  </ul>
+              </div>
+              
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exitModal">
               Sair
             </button>
-
             <!-- Modal -->
             <div class="modal fade" id="exitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">

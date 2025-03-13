@@ -6,6 +6,7 @@
 
     class PostModelo extends PostCategoriaAbstract{
         protected string $categoria, $dataPostagem, $ultimaAlteracao;
+        protected string $ultimoAcesso, $visitas;
         public function __construct() {
             parent::__construct();
             $this->table = "posts";
@@ -15,6 +16,8 @@
             $this->categoria = "id_categoria";
             $this->dataPostagem = "data_postagem";
             $this->ultimaAlteracao = "ultima_alteracao";
+            $this->ultimoAcesso = "ultimo_acesso";
+            $this->visitas = "visitas";
         }
 
         public function pesquisar(string $busca, string $ordem = null): array{

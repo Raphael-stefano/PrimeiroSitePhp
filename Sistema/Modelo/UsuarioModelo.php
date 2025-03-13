@@ -62,6 +62,11 @@ use PDO;
             return (new PostModelo)->lerCondicional('id_usuario', $id);
         }
 
+        public function alterarSenha(int $id, string $senha){
+            $dados['senha'] = Helper::gerarSenha($senha);
+            $this->editar($id, $dados);
+        }
+
         /*public function atualizarSenha(int $id) : void{
             $user = $this->lerEspecifico($id);
             $senha = Helper::gerarSenha($user->senha);

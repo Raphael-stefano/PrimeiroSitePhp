@@ -14,11 +14,11 @@ use Sistema\Modelo\CategoriaModelo;
 
     
 
-    /*$user = new UsuarioModelo();
+    //$user = new UsuarioModelo();
 
-    var_dump($user->lerCondicional('level', '3'));*/
+    //var_dump($user->lerCondicional('level', '3'));
 
-    /*$model = (new UsuarioModelo);
+    /*$model = new UsuarioModelo();
     $users = $model->ler();
 
     foreach($users as $user){
@@ -26,6 +26,10 @@ use Sistema\Modelo\CategoriaModelo;
         var_dump($user->id_usuario);
         echo "<hr>";
     }
+
+    foreach($users as $user){
+        $model->alterarSenha($user->id_usuario, "root");
+    }*/
 
     /*foreach($users as $user){
         $model->atualizarSenha($user->id_usuario);

@@ -18,7 +18,7 @@
                             <small class='text-secondary'>{{ contarTempo(post.data_postagem) }}</small>
                         </div>
                         <p id="post-{{ loop.index }}" data-texto-completo="{{post.texto}}" 
-                        data-texto-resumido="{{textoResumido(post.texto, 150)}}" onclick="exibirTexto('{{loop.index}}')" class="card-text">{{ textoResumido(post.texto, 150) }}</p>
+                        data-texto-resumido="{{textoResumido(post.texto, 75)}}" onclick="exibirTexto('{{loop.index}}')" class="card-text">{{ textoResumido(post.texto, 75) }}</p>
                     </div>
                 </div>
             </div>

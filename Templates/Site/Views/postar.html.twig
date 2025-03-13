@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block conteudo %}
+
+    <div class='table-responsive container p-3'>
+        <form action="{{ url('postar/'~usuario().id_usuario) }}" method="post">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" class="form-control" id="titulo" name="titulo">
+            </div>
+            <div class="mb-3">
+                <label for="texto" class="form-label">Texto</label>
+                <textarea type="text" class="form-control" id="texto" name="texto" rows="3"></textarea>
+            </div>
+            <select class="form-select mb-3" name='status'>
+                <option selected disabled>Status</option>
+                <option value="0">Inativo</option>
+                <option value="1">Ativo</option>
+            </select>
+            <select class="form-select mb-3" name='id_categoria'>
+                <option selected disabled>Categoria</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id_categoria }}">{{ categoria.titulo }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-warning">Cadastrar Post</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -22,6 +22,8 @@
             SimpleRouter::get('/perfil', 'SiteControlador@perfil');
             SimpleRouter::get('/postsUsuario/{id}', 'SiteControlador@postsUsuario');
             SimpleRouter::match(['get', 'post'], '/editar/{id}', 'SiteControlador@editar');
+            SimpleRouter::match(['get', 'post'], '/editarUsuario/{id}', 'SiteControlador@editarUsuario');
+            SimpleRouter::match(['get', 'post'], '/postar/{id}', 'SiteControlador@postar');
             SimpleRouter::get('/sair', 'SiteControlador@sair');
         });
 
@@ -47,7 +49,7 @@
 
         SimpleRouter::start();
     } catch(NotFoundHttpException $ex){
-        //Helper::redirecionar("404");
+        Helper::redirecionar("404");
     }
 
 ?>

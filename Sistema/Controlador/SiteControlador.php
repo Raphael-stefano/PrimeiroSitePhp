@@ -129,6 +129,66 @@
 
         }
 
+        public function editarUsuario(int $id): void{
+            $usuario = (new UsuarioModelo)->lerEspecifico($id);
+            if($usuario == null){
+                Helper::redirecionar("404");
+            }
+
+            $userId = (new Sessao)->id_usuario;
+
+            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            if(isset($dados) AND $userId == $usuario->id_usuario){
+                (new UsuarioModelo())->editar($id, $dados);
+                $this->mensagem->info('Usuário editado com sucesso!')->flash();
+                header("Location: " . Helper::url("perfil"));
+                exit();
+            }
+
+            if($userId == $usuario->id_usuario){
+                echo $this->template->renderizar("editarUsuario.html.twig", [
+                    'categorias' => $this->categorias,
+                    "usuario" => $usuario,
+                ]);
+            } else{
+                Helper::redirecionar("404");
+            }
+
+        }
+
+        public function postar(int $id): void{
+            $usuario = (new UsuarioModelo)->lerEspecifico($id);
+            if($usuario == null){
+                Helper::redirecionar("404");
+            }
+
+            $userId = (new Sessao)->id_usuario;
+
+            $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            if(isset($dados) AND $userId == $usuario->id_usuario){
+                $dados['id_usuario'] = $userId;
+                $dados['data_postagem'] = date('Y-m-d H:i:s');
+                (new PostModelo())->cadastrar($dados);
+                $this->mensagem->info('Post enviado com sucesso!')->flash();
+                header("Location: " . Helper::url("postsUsuario/{$id}"));
+                exit();
+            }
+
+            if($userId == $usuario->id_usuario){
+                echo $this->template->renderizar("postar.html.twig", [
+                    'categorias' => $this->categorias,
+                    "usuario" => $usuario,
+                ]);
+            } else{
+                Helper::redirecionar("404");
+            }
+
+        }
+
+        /*Otimize sua aplicação web com estas dicas rápidas: minifique arquivos CSS e JavaScript, habilite o cache do navegador, use consultas eficientes ao banco de dados, implemente uma CDN e monitore gargalos com ferramentas como o Google Lighthouse. Pequenas melhorias podem fazer uma grande diferença na experiência do usuário!
+
+        Como Melhorar a Performance de Aplicações Web*/
+
         public function buscar(): void{
             $busca = filter_input_array(INPUT_POST, FILTER_DEFAULT);
             if(isset($busca)){
